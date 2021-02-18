@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 
 usage() {
@@ -32,9 +31,11 @@ then
 
   if [[ "$#" -lt 1 ]]
   then
-    IMAGE_NAME="$1"
-    echo "Building image: $IMAGE_NAME" >&2
+    usage >&2
   fi
+
+  IMAGE_NAME="$1"
+  echo "Building image: $IMAGE_NAME" >&2
 
   case "$1" in
     help|h|-h|--help)
@@ -48,8 +49,8 @@ then
   # shellcheck disable=2207
   platforms=($(get_available_architectures "${base_image}" "${base_image_tag}"))
 
-  PUSH_IMAGE=false
-  BUILD_TYPE=manual
+  PUSH_IMAGE="${PUSH_IMAGE:-true}"
+  BUILD_TYPE="${BUILD_TYPE:-manual}"
 
   if [[ "$GITHUB_ACTIONS" == "true" ]]
   then

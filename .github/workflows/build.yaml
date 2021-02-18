@@ -35,6 +35,6 @@ jobs:
 
       - name: Run the build script
         id: build
-        run: ./build.sh
+        run: ./build.sh pschmitt/sthv
 
 # vim: set ft=yaml et ts=2 sw=2 :
